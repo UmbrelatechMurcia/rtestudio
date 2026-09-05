@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RT Estudio | Rocío Torrado - Arquitecta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-orange: #E05A2B;
+            --accent-hover: #c44b20;
+            --bg-dark: #0A0A0A;
+            --bg-card: #141414;
+            --text-main: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --border-color: #262626;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; background: rgba(10, 10, 10, 0.95);
+            position: fixed; width: 100%; top: 0; z-index: 1000; 
+            border-bottom: 2px solid var(--accent-orange);
+            backdrop-filter: blur(8px);
+        }
+        .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; color: var(--text-main); }
+        .logo-sub { font-size: 0.8rem; display: block; color: var(--accent-orange); font-weight: 400; letter-spacing: 3px; }
+        
+        .btn-cta {
+            background: var(--accent-orange); color: #fff; padding: 10px 22px;
+            text-decoration: none; border-radius: 4px; font-weight: 600; transition: 0.3s;
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
+        }
+        .btn-cta:hover { background: var(--accent-hover); }
+
+        .hero {
+            padding: 180px 8% 100px; text-align: center;
+            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+        }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 700; letter-spacing: 1px; }
+        .hero h1 span { color: var(--accent-orange); }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 35px; }
+
+        /* Métrica de impacto / Stats */
+        .stats-bar {
+            display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;
+            padding: 40px 8%; background: var(--bg-card); border-y: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .stat-item h3 { font-size: 2.2rem; color: var(--accent-orange); }
+        .stat-item p { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .services { padding: 80px 8%; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 50px; letter-spacing: 1px; }
+        .section-title span { color: var(--accent-orange); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card {
+            background: var(--bg-card); padding: 35px; border-radius: 6px;
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--accent-orange);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-orange); }
+        .card h3 { color: var(--text-main); margin-bottom: 15px; font-size: 1.3rem; }
+        .card ul { list-style: none; margin-top: 20px; }
+        .card ul li { color: var(--text-muted); margin-bottom: 10px; position: relative; padding-left: 20px; font-size: 0.95rem; }
+        .card ul li::before { content: "■"; position: absolute; left: 0; color: var(--accent-orange); font-size: 0.7rem; top: 2px; }
+
+        /* Banner de Subvenciones */
+        .banner-subvenciones {
+            margin: 0 8% 80px; padding: 30px; background: linear-gradient(90deg, #1f1f1f 0%, #141414 100%);
+            border-left: 4px solid var(--accent-orange); border-radius: 6px; display: flex;
+            justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+        }
+        .banner-subvenciones h3 { font-size: 1.3rem; }
+
+        /* Galería de proyectos con imágenes */
+        .portfolio { padding: 80px 8%; background: var(--bg-card); border-top: 1px solid var(--border-color); }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .portfolio-item {
+            background: var(--bg-dark); border: 1px solid var(--border-color);
+            border-radius: 6px; overflow: hidden; transition: border-color 0.3s, transform 0.3s;
+        }
+        .portfolio-item:hover { transform: translateY(-5px); border-color: var(--accent-orange); }
+        .portfolio-img {
+            width: 100%; height: 200px; object-fit: cover; display: block;
+        }
+        .portfolio-content { padding: 20px; }
+        .portfolio-content h4 { color: var(--accent-orange); margin-bottom: 8px; font-size: 1.1rem; }
+
+        /* FAQ */
+        .faq-section { padding: 80px 8%; background: var(--bg-dark); border-top: 1px solid var(--border-color); }
+        .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .faq-item {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 6px; overflow: hidden; transition: border-color 0.3s;
+        }
+        .faq-question {
+            width: 100%; padding: 20px; background: none; border: none; color: var(--text-main);
+            text-align: left; font-size: 1.1rem; font-weight: 600; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-question::after { content: "+"; color: var(--accent-orange); font-size: 1.5rem; font-weight: 300; }
+        .faq-item.active .faq-question::after { content: "−"; }
+        .faq-item.active { border-color: var(--accent-orange); }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-muted); padding: 0 20px; font-size: 0.95rem;
+        }
+        .faq-item.active .faq-answer { padding: 0 20px 20px 20px; max-height: 300px; }
+
+        /* Contacto */
+        .contact-section {
+            padding: 80px 8%; background: var(--bg-card); 
+            border-top: 1px solid var(--border-color);
+            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 40px;
+        }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-form { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea, .contact-form select {
+            width: 100%; padding: 14px; background: var(--bg-dark); border: 1px solid var(--border-color);
+            color: #fff; border-radius: 4px; outline: none; font-family: inherit;
+        }
+        .contact-form button {
+            background: var(--accent-orange); color: #fff; border: none; padding: 14px;
+            font-weight: 600; border-radius: 4px; cursor: pointer; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* Botón WhatsApp Flotante */
+        .btn-whatsapp-float {
+            position: fixed; bottom: 25px; right: 25px; background: #25D366; color: white;
+            border-radius: 50px; padding: 12px 20px; font-weight: 600; text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); z-index: 2000; display: flex; align-items: center;
+            gap: 10px; transition: transform 0.3s;
+        }
+        .btn-whatsapp-float:hover { transform: scale(1.05); }
+
+        footer { text-align: center; padding: 30px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/34680383862?text=Hola%20Roc%C3%ADo,%20quiero%20hacer%20una%20consulta" class="btn-whatsapp-float" target="_blank">
+        💬 WhatsApp Directo
+    </a>
+
+    <header>
+        <div class="logo">
+            ROCIO TORRADO
+            <span class="logo-sub">ARQUITECTA</span>
+        </div>
+        <a href="#contacto" class="btn-cta">Contactar</a>
+    </header>
+
+    <section class="hero">
+        <h1>ROCÍO TORRADO <span>| RT ESTUDIO</span></h1>
+        <p>Proyectos de Arquitectura, Cambios de Uso y Eficiencia Energética. Transformamos espacios con soluciones técnicas integrales y diseño funcional.</p>
+        <a href="#contacto" class="btn-cta">Pedir Consulta Técnica</a>
+    </section>
+
+    <!-- Barra de Métricas / Confianza -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <h3>100%</h3>
+            <p>Viabilidad Urbanística</p>
+        </div>
+        <div class="stat-item">
+            <h3>+50</h3>
+            <p>Proyectos Gestionados</p>
+        </div>
+        <div class="stat-item">
+            <h3>Oficial</h3>
+            <p>Certificación Energética</p>
+        </div>
+    </div>
+
+    <section class="services">
+        <h2 class="section-title">SERVICIOS <span>ESPECIALIZADOS</span></h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🏛️ Proyectos de Arquitectura</h3>
+                <p style="color: var(--text-muted);">Diseño, desarrollo y ejecución técnica para obras residenciales y comerciales.</p>
+                <ul>
+                    <li>Obra nueva y reformas integrales</li>
+                    <li>Levantamiento de planos y modelado 3D</li>
+                    <li>Dirección técnica de obra</li>
+                    <li>Diseño de interiores y espacios adaptados</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🔄 Cambios de Uso</h3>
+                <p style="color: var(--text-muted);">Transformación técnica y legal de locales o inmuebles en viviendas habitables.</p>
+                <ul>
+                    <li>Estudios de viabilidad urbanística</li>
+                    <li>Redacción de proyectos para ayuntamientos</li>
+                    <li>Tramitación de licencias ambientales y de obras</li>
+                    <li>Obtención de cédulas de habitabilidad</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>⚡ Eficiencia Energética</h3>
+                <p style="color: var(--text-muted);">Ahorro económico y sostenibilidad aplicando la normativa energética vigente.</p>
+                <ul>
+                    <li>Certificados de Eficiencia Energética (CEE)</li>
+                    <li>Proyectos de rehabilitación energética</li>
+                    <li>Gestión de subvenciones y ayudas comunitarias</li>
+                    <li>Aislamiento térmico y soluciones de bajo consumo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Promocional de Subvenciones -->
+    <div class="banner-subvenciones">
+        <div>
+            <h3>¿Buscas financiar tu proyecto de Eficiencia Energética?</h3>
+            <p style="color: var(--text-muted);">Gestionamos e impulsamos la obtención de deducciones e incentivos fiscales para tu reforma.</p>
+        </div>
+        <a href="#contacto" class="btn-cta">Informarme de Ayudas</a>
+    </div>
+
+    <!-- Galería / Portfolio con imágenes -->
+    <section class="portfolio">
+        <h2 class="section-title">PROYECTOS Y <span>TRANSFORMACIONES</span></h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop" alt="Cambio de Uso" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h4>Cambio de Uso</h4>
+                    <p style="color: var(--text-muted);">Transformación de local comercial a loft residencial moderno.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop" alt="Rehabilitación Energética" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h4>Rehabilitación Energética</h4>
+                    <p style="color: var(--text-muted);">Aislamiento térmico integral SATE y mejora de iluminación natural.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop" alt="Proyecto de Reforma" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h4>Proyecto de Reforma</h4>
+                    <p style="color: var(--text-muted);">Diseño de interiores, redistribución de espacios y acabados de calidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <h2 class="section-title">PREGUNTAS <span>FRECUENTES</span></h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">¿Cualquier local comercial se puede convertir en vivienda?</button>
+                <div class="faq-answer">
+                    <p>No todos los locales cumplen con la normativa urbanística. Se requiere un estudio previo para verificar metros cuadrados, fachada, ventilación y luz natural.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">¿Cuánto tiempo tarda la tramitación de un cambio de uso?</button>
+                <div class="faq-answer">
+                    <p>La redacción del proyecto toma unas semanas, mientras que la licencia municipal depende de cada ayuntamiento (normalmente entre 2 y 6 meses).</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">¿Cuándo es obligatorio el Certificado de Eficiencia Energética?</button>
+                <div class="faq-answer">
+                    <p>Es obligatorio por ley para alquilar o vender cualquier inmueble en territorio nacional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact-section" id="contacto">
+        <div class="contact-info">
+            <h2>Hablemos sobre tu proyecto</h2>
+            <p style="color: var(--text-muted); margin-top: 10px;">Solicita una evaluación previa de tu inmueble o proyecto sin compromiso.</p>
+            
+            <p style="margin-top: 30px; font-size: 1.05rem;">
+                ✉️ <strong>Email:</strong><br>
+                <a href="mailto:arquitecta@rtestudio.net" style="color: var(--accent-orange); text-decoration: none;">arquitecta@rtestudio.net</a>
+            </p>
+
+            <p style="margin-top: 15px; font-size: 1.05rem;">
+                📞 <strong>Llámanos:</strong><br>
+                <a href="tel:+34680383862" style="color: var(--accent-orange); text-decoration: none;">+34 680 38 38 62</a>
+            </p>
+        </div>
+
+        <form class="contact-form" id="whatsappForm">
+            <input type="text" id="nombre" placeholder="Nombre completo" required>
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+            <input type="tel" id="telefono" placeholder="Teléfono de contacto" required>
+            <select id="servicio" required>
+                <option value="" disabled selected>Selecciona el servicio</option>
+                <option value="Cambio de Uso (Local a Vivienda)">Cambio de Uso (Local a Vivienda)</option>
+                <option value="Proyecto de Arquitectura / Reforma">Proyecto de Arquitectura / Reforma</option>
+                <option value="Eficiencia Energética / Certificado">Eficiencia Energética / Certificado</option>
+                <option value="Otro tipo de consulta">Otro tipo de consulta</option>
+            </select>
+            <textarea id="mensaje" rows="4" placeholder="Describe brevemente tu proyecto o inmueble" required></textarea>
+            
+            <label style="font-size: 0.8rem; color: var(--text-muted); display: flex; gap: 8px; align-items: flex-start;">
+                <input type="checkbox" required style="width: auto; margin-top: 3px;">
+                Acepto la política de privacidad y el tratamiento de mis datos para esta consulta.
+            </label>
+
+            <button type="submit">Enviar por WhatsApp</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 RT Estudio | Rocío Torrado Arquitecta. Todos los derechos reservados. | <a href="#" style="color: var(--text-muted);">Aviso Legal y Privacidad</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const telefonoRocio = "34680383862";
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const telefonoCliente = document.getElementById('telefono').value;
+            const servicio = document.getElementById('servicio').value;
+            const mensaje = document.getElementById('mensaje').value;
+            
+            const textoMensaje = `Hola Rocío, soy *${nombre}*.\n\n` +
+                                 `📌 *Servicio de interés:* ${servicio}\n` +
+                                 `✉️ *Email:* ${email}\n` +
+                                 `📞 *Teléfono:* ${telefonoCliente}\n\n` +
+                                 `💬 *Consulta:* ${mensaje}`;
+            
+            const urlWhatsApp = `https://wa.me/${telefonoRocio}?text=${encodeURIComponent(textoMensaje)}`;
+            window.open(urlWhatsApp, '_blank');
+        });
+
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
